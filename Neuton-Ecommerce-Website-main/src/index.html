@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>App</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- primeflex -->
+  <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">   
+  
+  <!-- paypal -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AbKY50q4rV4qEa7iH29p0l10NbonCFYe5Knlw_tLIMW5qT1Z06pYa11Yiqv6lak6OtUjaIfW94zTDY5W"></script>
+
+  <link rel="icon" type="image/x-icon" href="assets/man.png">
+
+  <!-- ----------- start script for email js form -->
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("0XpC30yg7gM4VDRSv");
+    })();
+  </script>
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+
+</head>
+<body>
+  <app-root></app-root>
+
+
+
+  <!-- -------------- Start of script sending email------ -->
+<script type="text/javascript">
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // Send email to admin
+    emailjs.sendForm('service_y83zs3n', 'template_admin', this)
+      .then(function () {
+        console.log('Email sent to admin');
+      }, function (error) {
+        console.error('An error occurred while sending email to admin:', error);
+      });
+
+    // Send email to user
+    emailjs.sendForm('service_y83zs3n', 'template_user', this)
+      .then(function () {
+        alert('Email Sent!');
+      }, function (error) {
+        alert('An error occurred, please try again later.');
+      });
+  });
+</script>
+
+
+
+
+
+
+
+
+  <script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "YHRzOQ7SYdv7QkAkmHJIT",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="YHRzOQ7SYdv7QkAkmHJIT"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<section class="categories">
+    <div class="container">
+
+        <h2 class="sec-title">Browse Categories</h2>
+    </div>
+    <div class="container">
+        <div class="row ps-sm-5 pe-sm-5 text-center">
+        <!-- ps-5 pe-5 *ngFor="let c of allCats" -->
+        <app-spinner *ngIf="isLoading"></app-spinner>
+            <div class="col-lg-3 col-md-4 col-sm-6" 
+                 *ngFor="let c of allCats">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat1-bg cat-bg">
+                            <img [src]="c.imageName">
+                        </div>
+                    </div>
+                    <h5 class="cat-title">{{c.name}}</h5>
+                </div>
+            </div>
+
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat2-bg cat-bg"></div>
+                    </div>
+                    <h5 class="cat-title">Mobiles</h5>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat3-bg cat-bg"></div>
+                    </div>
+                    <h5 class="cat-title">screens</h5>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat4-bg cat-bg"></div>
+                    </div>
+                    <h5 class="cat-title">covers</h5>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat5-bg cat-bg"></div>
+                    </div>
+                    <h5 class="cat-title">chargers</h5>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="colCont">
+                    <div class="cat-image">
+                        <div class="cat6-bg cat-bg"></div>
+                    </div>
+                    <h5 class="cat-title">power bank</h5>
+                </div>
+            </div> -->
+
+
+        </div>
+    </div>
+</section>

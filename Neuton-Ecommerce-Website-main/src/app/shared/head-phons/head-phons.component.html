@@ -1,0 +1,58 @@
+<div class="container">
+    <h2 class="sec-title">Head Phone</h2>
+</div>
+
+<div class="crsl">
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" 
+                [circular]="true" [responsiveOptions]="responsiveOptions" 
+                [autoplayInterval]="3000">
+        <ng-template let-pro pTemplate="item">
+    
+            <div class="item mt-3 mx-1">
+                <div class="image">
+                    <img [src]="pro.images[0]? pro.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'" alt="">
+                    <div class="btns">
+                        <!-- <div class="add-cart">
+                            <i (click)="confirmAddToCart('top',pro,1)" class="icon pi pi-shopping-cart"></i>
+                        </div> -->
+                        <div class="quick-view">
+                            <i [routerLink]="['/productdetails', pro.id]" class="icon pi pi-search"></i>
+                        </div>
+                        <!-- <div class="details">
+                            <i (click)="quickView(pro.id); checkScreenSize()" class="icon pi pi-eye"></i>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="data pt-2">               
+                    <h3 class="text-muted">{{pro.name}}</h3>
+                    <h4> {{pro.price}}  L.E
+                        <del>
+                            <span class="text-muted">
+                                {{(pro.price)*110/100}} L.E
+                            </span>
+                        </del>
+                    </h4>
+                </div>
+            </div>
+    
+            <!-- <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="mb-3">
+                    <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{ product.name }}</h4>
+                    <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>
+                    <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+                    <div class="car-buttons mt-5">
+                        <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>
+                        <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>
+                    </div>
+                </div>
+            </div> -->
+        </ng-template>
+    </p-carousel>
+</div>
+
+<!-- <div class="card">
+</div> -->

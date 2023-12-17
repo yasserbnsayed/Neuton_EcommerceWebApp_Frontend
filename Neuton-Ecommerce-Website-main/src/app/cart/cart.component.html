@@ -1,0 +1,143 @@
+<div class="container-fluid">
+    <div class="head">
+      <div>Cart</div>
+      <div>
+        <span class="cursor-pointer" routerLink="/home">Home</span>
+        /
+        <span>Cart</span>
+      </div>
+    </div>
+</div>
+
+
+<div class="">
+
+    <p-toast></p-toast>
+    <div class="cart-page">
+        
+        <!-- Cart Products -->
+        <table *ngIf="products.length > 0">
+            <tr class="x">
+                <th>Image</th>
+                <th class="d-none sm-screen-block"></th>
+                <th>Product Name</th>
+                <th class="sm-screen-non">Price</th>
+                <th class="sm-screen-non">Quantity</th>
+                <th class="sm-screen-non">Action</th>
+                <th class="sm-screen-non">Total</th>
+            </tr>
+
+            
+
+            <tr *ngFor="let p of products, let index = index">
+                <td>
+                    <div class="cart-info">
+                        <img [routerLink]="['/productdetails', p.product.id]" 
+                        [src]="p.product.images[0]" class="cursor-pointer">
+                    </div>
+                </td>
+
+                <td class="p-name">
+                    <p [routerLink]="['/productdetails', p.product.id]" 
+                        class="sm-screen-non cursor-pointer">
+                        {{p.product.name | slice:0:15}}
+                    </p>
+
+                    <div class="qty-box d-none sm-screen-block">
+                        <div class="input-group">
+                            <span>
+                                <button [disabled]="p.q <= 1" 
+                                        (click)="minusAmount(index);p.q * p.product.price " 
+                                        type="button" class="btn quantity-left-minus" >
+                                        <i class="pi pi-angle-left"></i>
+                                </button>
+                            </span>
+                            <!-- <span *ngIf="p.q > p.product.unitInStock">out of stock</span> -->
+                            <input type="text" [value]="p.q" disabled class="form-control text-center" >
+                            <span>
+                                <button [disabled]="p.q >= p.product.unitInStock" 
+                                        (click)="plusAmount(index);p.q * p.product.price " type="button" 
+                                        class="btn quantity-right-plus">
+                                    <!-- [disabled]="p.q > p.product.unitInStock" -->
+                                    <i class="pi pi-angle-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="p-price">
+                    <p [routerLink]="['/productdetails', p.product.id]" 
+                        class="d-none sm-screen-block sm-name cursor-pointer">
+                        {{p.product.name | slice:0:15}}
+                    </p>
+                    <p class="sm-price">{{p.product.price}} L.E</p>
+                </td>
+
+                <td>
+                    <div class="qty-box sm-screen-non">
+                        <div class="input-group">
+                            <span>
+                                <button [disabled]="p.q <= 1" (click)="minusAmount(index)" type="button" class="btn quantity-left-minus" >
+                                        <i class="pi pi-angle-left"></i>
+                                </button>
+                            </span>
+                            <!-- <span *ngIf="p.q > p.product.unitInStock">out of stock</span> -->
+                            <input type="text" [value]="p.q" disabled class="form-control text-center" >
+                            <span>
+                                <button [disabled]="p.q >= p.product.unitInStock" (click)="plusAmount(index)" type="button" class="btn quantity-right-plus">
+                                    <!-- [disabled]="p.q > p.product.unitInStock" -->
+                                    <i class="pi pi-angle-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="d-none sm-screen-block" 
+                       (click)="removeProduct(p.product,index)">
+                        <i class="pi pi-times"></i>
+                    </p>
+                </td>
+
+                <td  class="remove sm-screen-non">
+                    <p (click)="removeProduct(p.product,index)"><i class="pi pi-times"></i></p>                    
+                </td>
+
+                <td class="row-tot-price sm-screen-non">
+                    <p>{{p.q * p.product.price }} L.E</p>
+                </td>
+            </tr>
+
+            
+        </table>
+
+        <!-- Your Cart is Empty -->
+        <div *ngIf="products.length <= 0"
+           class="col-sm-12 empty-cart-cls text-muted text-center">
+            <img src="../../assets/icon-empty-cart.png" 
+            class="img-fluid mb-4">
+            <h3>
+                <strong>Your Cart is Empty</strong>
+            </h3>
+            <h4>Add something to make me happy</h4>
+        </div>
+
+        <hr>
+
+        <div class="total-price" *ngIf="products.length > 0">
+            <p>Total Price : </p>
+            <h3>{{totalPrice  | currency :' EGP ':'symbol'}}</h3>       
+        </div>
+
+        <div class="btns">
+            <button routerLink="/shop" class="btn btn-solid">
+                continue shopping
+            </button>
+            <!-- routerLink="/order"  -->
+            <!-- [disabled]="products.length <= 0"  -->
+            <button (click)="checkOut()" [disabled]="products.length <= 0"
+                class="btn btn-solid">
+                check out
+            </button>        
+        </div>
+    </div>
+</div>

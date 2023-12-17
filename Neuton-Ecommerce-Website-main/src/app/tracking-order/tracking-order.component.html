@@ -1,0 +1,189 @@
+
+<p-toast></p-toast>
+
+<div class="container-title">
+  <div class="head">
+    <div>Tracking</div>
+    <div>
+      <span class="cursor-pointer" routerLink="/home">Home</span>
+      /
+      <span>Tracking</span>
+    </div>
+  </div>
+</div>
+
+<div class="container all-content">
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <h3 style="color: #1842b6; text-align: center;">
+          {{'Arriving in'}} 
+          {{order.arrivalDate|date:'short'}}
+        </h3>
+      </div>
+    </div>
+  
+    <div class="row" style="direction: ltr;">
+      <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+      <div class="container padding-bottom-3x mb-1">
+        <div class="card mb-3">
+
+          <div class="head p-4 text-center text-white rounded-top">
+                <span class="text-uppercase">
+                    {{'Tracking Order Number -'}} 
+                </span>
+                <span class="text-medium">
+                    {{order.id}}
+                </span>
+          </div>
+
+          <div class="d-flex res-wrap justify-content-between py-3 px-2 bg-secondary">
+                <div class="w-100 text-center py-1 px-2">
+                    <span class="text-medium">
+                        {{'Shipped Via'}}:
+                    </span>
+                    {{' Newton'}}
+                </div>
+                
+                <div class="w-100 text-center py-1 px-2">
+                    <span class="text-medium">
+                        {{'Status'}}:
+                    </span>
+                    {{curruntStatus.getValue()+1}}
+                </div>
+
+                <div class="w-100 text-center py-1 px-2">
+                    {{' Arrival Date'}}
+                    : 
+                    {{order.arrivalDate|date}} 
+                </div>
+          </div>
+
+          <div class="card-body">
+            <div class="steps d-flex res-wrap justify-content-between padding-top-2x padding-bottom-1x">
+              <div class="step completed ">
+                    <div class="step-icon-wrap">
+                        <div class="step-icon">
+                            <i class="fa-solid fa-cart-shopping fs-3"></i>
+                        </div>
+                    </div>
+                    <h4 class="step-title">
+                        {{'Ordered Today'}}
+                    </h4>
+              </div>
+
+              <div class="step " [class.completed]="curruntStatus.getValue() > 0">
+                    <div class="step-icon-wrap">
+                        <div class="step-icon">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                    </div>
+                    <h4 class="step-title">
+                        {{'Shipped'}}
+                    </h4>
+              </div>
+
+              <div class="step " [class.completed]="curruntStatus.getValue() > 1">
+                    <div class="step-icon-wrap">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    </div>
+                    <h4 class="step-title">
+                        {{'out For Delivery'}}
+                    </h4>
+              </div>
+
+              <div class="step " [class.completed]="curruntStatus.getValue() > 2">
+                <div class="step-icon-wrap">
+                  <div class="step-icon">
+                    <i class="fa-solid fa-person-circle-check"></i>
+                    <!-- <i>
+                        <img  src="../../assets/man.png" style="width: 35px;height: 35px;">
+                    </i> -->
+                  </div>
+                </div>
+                <h4 class="step-title">
+                    {{'Arrived'}}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <div class="row ">
+  
+      <div class="col-md-4 col-sm-12 mb-2">
+        <div class="card mb-3 p-4 " style="color:#1842b6 ;">
+          <h3>{{'Shipping Address'}}</h3>
+          <h6>{{shippingAddress.name}}</h6>
+          <h6>{{shippingAddress.buildname}}</h6>
+          <h6>{{shippingAddress.street}}</h6>
+          <h6>{{shippingAddress.cityname}}</h6>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 mb-2 ">
+        <div class="card mb-3 p-4 ">
+          <h4 style="color:#1842b6 ;">{{'Order info'}}</h4>
+          <br>
+          <br>
+          <button class="btn btn-solid w-lg-50 w-75 mx-auto" 
+                  [disabled]="curruntStatus.getValue() > 1"
+                  (click)="show()">
+            <h5>{{'Cancel order'}}</h5>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 mb-2 ">
+        <div class="mb-3 p-4 text-center" style="color:rgb(34, 79, 60) ;">
+          
+          <button class="btn btn-solid w-lg-50 w-75 mx-auto my-2" 
+                  routerLink="/all-orders">
+            <h5>{{'All Orders'}}</h5>
+          </button>
+          <br>
+          <button class="btn btn-solid w-lg-50 w-75 mx-auto my-2" 
+                  routerLink="/shop" >
+            <h5 class="w-max">{{'continue shopping'}}</h5>
+          </button>
+        </div>
+      </div>
+
+    </div>
+</div>
+  <!-- <div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+    <div class="popup1" >
+  
+      <h2>Are you sure you want</h2>
+      <h2> to cancel this order</h2>
+      <button  class="btn btn-danger shadow-0 m-2 rounded-pill"
+       (click)="cancelOrder(order.id)">Yes</button>
+       <button  class="btn btn-danger shadow-0 m-2 rounded-pill"
+       (click)="close()">NO</button>
+  
+    </div>
+  </div> -->
+
+<p-dialog [(visible)]="visible" [modal]="true" 
+            [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p class="dialogP">
+        <i class="icon fa-solid fa-ban"></i>
+        Are you sure you want
+        to cancel this order
+    </p>
+    <div class="pop-btns">
+      <button (click)="cancelOrder(order.id)" 
+              class="btn btn-solid mt-2">
+          Yes
+      </button>
+      <button (click)="close()" 
+              class="btn btn-solid mt-2">
+          No
+      </button>
+    </div>
+</p-dialog>
+  

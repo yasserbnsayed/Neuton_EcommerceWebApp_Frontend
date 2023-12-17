@@ -1,0 +1,552 @@
+
+<div class="container">
+
+    <p-toast></p-toast>    
+    <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    key="positionDialog" [position]="position" 
+    rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
+    
+
+<!-- Quick View Pop Up Large -->
+<p-dialog *ngIf="popupId" header="Header" [modal]="true" [(visible)]="visibleLarge"
+            class="pop-quick-view"
+            [style]="{ width: '50vw' }">
+    <div class="popContent">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="popImage">
+                <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pop-details">
+                    <h2>{{popupProduct.name}}</h2>
+                    <h4> EGP {{popupProduct.price}} 
+                        <del>
+                            <span class="text-muted">
+                                EGP {{(popupProduct.price)*110/100}}
+                            </span>
+                        </del>
+                    </h4>
+                    <hr>
+                    <h5>Product Details</h5>
+                    <p>{{popupProduct.description}}</p>
+                    <hr>
+    
+                    <h5 class="stock">
+                        <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                        <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+                    </h5>
+    
+                    <h5 class="quantity-title">quantity</h5>
+    
+                    <div class="qty-box">
+                        <div class="input-group">
+                            <span (click)="decerment()">
+                                <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                        <i class="pi pi-angle-left"></i>
+                                </button>
+                            </span>
+                            <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                            <span  (click)="incerment()">
+                                <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                                    <i class="pi pi-angle-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+    
+                    <hr>
+    
+                    <div class="product-buttons">
+                            <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                                add to cart
+                            </button>
+                            <button [routerLink]="['/productdetails', popupProduct.id]" class="btn btn-solid">
+                                view detail
+                            </button>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        
+        
+        <span class="close" 
+        (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+            <i class="pi pi-times"></i>
+        </span>
+
+    </div>
+</p-dialog>
+
+<!-- Quick View Pop Up Mobile -->
+<p-dialog *ngIf="popupId" header="Header" [modal]="true" [(visible)]="visibleMobile"
+            class="pop-quick-view"
+            [style]="{ width: '90vw' }">
+    <div class="popContent">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="popImage">
+            <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+            </div>
+        </div>
+        <div class="col-lg-6">
+        <div class="pop-details">
+            <h2>{{popupProduct.name}}</h2>
+            <h4> EGP {{popupProduct.price}} 
+                <del>
+                    <span class="text-muted">
+                        EGP {{(popupProduct.price)*110/100}}
+                    </span>
+                </del>
+            </h4>
+            <hr>
+            <h5>Product Details</h5>
+            <p>{{popupProduct.description}}</p>
+            <hr>
+
+            <h5 class="stock">
+                <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+            </h5>
+
+            <h5 class="quantity-title">quantity</h5>
+
+            <div class="qty-box">
+                <div class="input-group">
+                    <span (click)="decerment()">
+                        <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                <i class="pi pi-angle-left"></i>
+                        </button>
+                    </span>
+                    <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                    <span  (click)="incerment()">
+                        <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                            <i class="pi pi-angle-right"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="product-buttons">
+                    <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                        add to cart
+                    </button>
+                    <button [routerLink]="['/productdetails', popupProduct.id]" class="btn btn-solid">
+                        view detail
+                    </button>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    
+    
+    <span class="close" 
+    (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+        <i class="pi pi-times"></i>
+    </span>
+
+    </div>
+</p-dialog>
+
+    
+    
+<p-dataView #dv [value]="_ProductsService.filterProducts$.getValue()" [layout]="'grid'" 
+        [rows]="6" [paginator]="true" [showFirstLastIcon]="false"
+        [pageLinks]="2" paginatorDropdownScrollHeight="150px"
+        [showFirstLastIcon]="true"
+        [rowsPerPageOptions]="[6,5,4,3]" >
+    <ng-template pTemplate="header">
+        <div class="flex justify-content-between align-items-center ">
+            
+            <div>
+                <span class="multi-cat" *ngFor="let cat of _ProductsService.multiCats$.getValue()">
+                    {{cat}}
+                </span>
+            </div>
+            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+    </ng-template>
+    
+    <ng-template let-product pTemplate="listItem">
+        
+        <div class="col-12 item mt-3">
+            <div class="position-relative overflow-hidden flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                <img class="imag-list w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" 
+                [src]="product.images[0]" [alt]="product.name" />
+                <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                    <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                        <div class="text-2xl font-bold text-900">{{ product.name }}</div>
+                        <div class="flex align-items-center gap-3">
+                            <span class="flex align-items-center gap-2">
+                                <span class="font-semibold">{{ product.description }}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                        <h4> {{product.price}}  L.E
+                            <del>
+                                <span class="text-muted">
+                                    {{(product.price)*110/100}} L.E
+                                </span>
+                            </del>
+                        </h4>
+                        <div class="btns-grid">
+                            <div class="add-cart">
+                                <i (click)="confirmAddToCart('top',product,1)" class="icon pi pi-shopping-cart"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i [routerLink]="['/productdetails', product.id]" class="icon pi pi-search"></i>
+                            </div>
+                            <div class="details">
+                                <i (click)="quickView(product.id); checkScreenSize()" class="icon pi pi-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <p-dialog *ngIf="product.id" header="Header" [modal]="true" [(visible)]="visibleLarge"
+                class="pop-quick-view"
+                [style]="{ width: '50vw' }">
+            <div class="popContent">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="popImage">
+                        <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="pop-details">
+                        <h2>{{popupProduct.name}}</h2>
+                        <h4> EGP {{popupProduct.price}} 
+                            <del>
+                                <span class="text-muted">
+                                    EGP {{(popupProduct.price)*110/100}}
+                                </span>
+                            </del>
+                        </h4>
+                        <hr>
+                        <h5>Product Details</h5>
+                        <p>{{popupProduct.description}}</p>
+                        <hr>
+
+                        <h5 class="stock">
+                            <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                            <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+                        </h5>
+
+                        <h5 class="quantity-title">quantity</h5>
+
+                        <div class="qty-box">
+                            <div class="input-group">
+                                <span (click)="decerment()">
+                                    <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                            <i class="pi pi-angle-left"></i>
+                                    </button>
+                                </span>
+                                <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                                <span  (click)="incerment()">
+                                    <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                                        <i class="pi pi-angle-right"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="product-buttons">
+                                <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                                    add to cart
+                                </button>
+                                <button class="btn btn-solid">
+                                    view detail
+                                </button>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                
+                
+                <span class="close" 
+                (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+                    <i class="pi pi-times"></i>
+                </span>
+
+            </div>
+        </p-dialog>
+
+        <p-dialog *ngIf="product.id" header="Header" [modal]="true" [(visible)]="visibleMobile"
+                class="pop-quick-view"
+                [style]="{ width: '90vw' }">
+                <div class="popContent">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="popImage">
+                        <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="pop-details">
+                        <h2>{{popupProduct.name}}</h2>
+                        <h4> EGP {{popupProduct.price}} 
+                            <del>
+                                <span class="text-muted">
+                                    EGP {{(popupProduct.price)*110/100}}
+                                </span>
+                            </del>
+                        </h4>
+                        <hr>
+                        <h5>Product Details</h5>
+                        <p>{{popupProduct.description}}</p>
+                        <hr>
+
+                        <h5 class="stock">
+                            <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                            <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+                        </h5>
+
+                        <h5 class="quantity-title">quantity</h5>
+
+                        <div class="qty-box">
+                            <div class="input-group">
+                                <span (click)="decerment()">
+                                    <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                            <i class="pi pi-angle-left"></i>
+                                    </button>
+                                </span>
+                                <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                                <span  (click)="incerment()">
+                                    <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                                        <i class="pi pi-angle-right"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="product-buttons">
+                                <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                                    add to cart
+                                </button>
+                                <button class="btn btn-solid">
+                                    view detail
+                                </button>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                
+                
+                <span class="close" 
+                (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+                    <i class="pi pi-times"></i>
+                </span>
+
+                </div>
+        </p-dialog> -->
+
+    </ng-template>
+    <ng-template let-pro pTemplate="gridItem">
+        <div class="col-12 sm:col-6 lg:col-12 xl:col-4 mb-2">
+      <!-- categoryId -->
+      
+            <div class="item mt-3 mx-1">
+                <div *ngIf="pro.categoryId == 4">New Phone</div>
+                <div class="image">
+                    <img [src]="pro.images[0]? pro.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'" alt="">
+                    <div class="btns">
+                        <div class="add-cart">
+                            <i (click)="confirmAddToCart('top',pro,1)" class="icon pi pi-shopping-cart"></i>
+                        </div>
+                        <div class="quick-view">
+                            <i [routerLink]="['/productdetails', pro.id]" class="icon pi pi-search"></i>
+                        </div>
+                        <div class="details">
+                            <i (click)="quickView(pro.id); checkScreenSize()" class="icon pi pi-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="data pt-2">
+                    <!-- <div class="rate">                       
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                    </div> -->
+                    <h3 class="text-muted">{{pro.name}}</h3>
+                    <h4> {{pro.price}}  L.E
+                        <del>
+                            <span class="text-muted">
+                                {{(pro.price)*110/100}} L.E
+                            </span>
+                        </del>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- <p-dialog *ngIf="pro.id==1" header="Header" [modal]="true" [(visible)]="visibleLarge"
+                    class="pop-quick-view"
+                    [style]="{ width: '50vw' }">
+            
+                    <div class="popContent">
+                            <div class="row">
+                            <div class="col-lg-6">
+                                <div class="popImage">
+                                    <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="pop-details">
+                                    <h2>{{popupProduct.name}}</h2>
+                                    <h4> EGP {{popupProduct.price}} 
+                                        <del>
+                                            <span class="text-muted">
+                                                EGP {{(popupProduct.price)*110/100}}
+                                            </span>
+                                        </del>
+                                    </h4>
+                                    <hr>
+                                    <h5>Product Details</h5>
+                                    <p>{{popupProduct.description}}</p>
+                                    <hr>
+            
+                                    <h5 class="stock">
+                                        <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                                        <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+                                    </h5>
+            
+                                    <h5 class="quantity-title">quantity</h5>
+            
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <span (click)="decerment()">
+                                                <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                                        <i class="pi pi-angle-left"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                                            <span  (click)="incerment()">
+                                                <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                                                    <i class="pi pi-angle-right"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+            
+                                    <hr>
+            
+                                    <div class="product-buttons">
+                                            <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                                                add to cart
+                                            </button>
+                                            <button class="btn btn-solid">
+                                                view detail
+                                            </button>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <span class="close" 
+                            (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+                                <i class="pi pi-times"></i>
+                            </span>
+            
+                    </div>            
+            </p-dialog>
+            
+            <p-dialog *ngIf="pro.id==1" header="Header" [modal]="true" [(visible)]="visibleMobile"
+                    class="pop-quick-view"
+                    [style]="{ width: '90vw' }">
+            
+                    <div class="popContent">
+                            <div class="row">
+                            <div class="col-lg-6">
+                                <div class="popImage">
+                                    <img [src]="popupProduct.images[0]? popupProduct.images[0]:'../../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp'">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="pop-details">
+                                    <h2>{{popupProduct.name}}</h2>
+                                    <h4> EGP {{popupProduct.price}} 
+                                        <del>
+                                            <span class="text-muted">
+                                                EGP {{(popupProduct.price)*110/100}}
+                                            </span>
+                                        </del>
+                                    </h4>
+                                    <hr>
+                                    <h5>Product Details</h5>
+                                    <p>{{popupProduct.description}}</p>
+                                    <hr>
+            
+                                    <h5 class="stock">
+                                        <span *ngIf="qty <= popupProduct.unitInStock">In Stock</span>
+                                        <span *ngIf="qty > popupProduct.unitInStock">Out Of Stock</span>
+                                    </h5>
+            
+                                    <h5 class="quantity-title">quantity</h5>
+            
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <span (click)="decerment()">
+                                                <button [disabled]="qty <= 1" type="button" class="btn quantity-left-minus" >
+                                                        <i class="pi pi-angle-left"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" [value]="qty" [(ngModel)]="qty" disabled class="form-control text-center" >
+                                            <span  (click)="incerment()">
+                                                <button  [disabled]="qty > popupProduct.unitInStock" type="button" class="btn quantity-right-plus">
+                                                    <i class="pi pi-angle-right"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+            
+                                    <hr>
+            
+                                    <div class="product-buttons">
+                                            <button (click)="confirmAddToCart('top',popupProduct,qty)" [disabled]="qty > popupProduct.unitInStock" class="btn btn-solid">
+                                                add to cart
+                                            </button>
+                                            <button class="btn btn-solid">
+                                                view detail
+                                            </button>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <span class="close" 
+                            (click)="visibleLarge = false; visibleMobile = false; qty = 1">
+                                <i class="pi pi-times"></i>
+                            </span>
+            
+                    </div> 
+            </p-dialog> -->
+
+        </div>
+    </ng-template>
+</p-dataView>
+<app-spinner *ngIf="_ProductsService.filterProducts$.getValue().length <= 0"></app-spinner>
+
+</div>
+
+

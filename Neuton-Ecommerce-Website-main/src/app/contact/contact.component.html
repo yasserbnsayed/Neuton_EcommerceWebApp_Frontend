@@ -1,0 +1,104 @@
+
+<section class="contact-section">
+
+  <div class = "contact-bg">
+      <h3>Get in Touch with Us</h3>
+      <h2>contact us</h2>
+      <div class = "line">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p class = "text">Feel free to reach out to us for any inquiries, suggestions, or just to say hello! Our team is here to assist you.</p>
+  </div>
+
+
+  <div class = "contact-body">
+      <div class = "contact-info">
+          <div>
+          <span><i class = "icon fas fa-mobile-alt"></i></span>
+          <span>Phone No.</span>
+          <span class = "text">2-068-3660-111</span>
+          </div>
+          <div>
+          <span><i class = "icon fas fa-envelope-open"></i></span>
+          <span>E-mail</span>
+          <span class = "text">Contact Neuton.com</span>
+          <!-- <span class = "text">mail@company.com</span> -->
+          </div>
+          <div>
+          <span><i class = "icon fas fa-map-marker-alt"></i></span>
+          <span>Address</span>
+          <span class = "text">19 shalby Street, Minya, Egypt</span>
+          </div>
+          <div>
+          <span><i class = "icon fas fa-clock"></i></span>
+          <span>Opening Hours</span>
+          <span class = "text">sunday - Thrusday(9:00 AM to 5:00 PM)</span>
+          </div>
+      </div>
+
+      <div class = "contact-form" >
+          <form id ="contact-form" [formGroup]="form" action="javascript:void(0)"(submit)="send()">
+          <div>
+              <input formControlName="name" type = "text" id="name" class = "form-control" placeholder=" Name" name="name" required="">
+              <!-- <input type = "text" class = "form-control" placeholder="Last Name"> -->
+          </div>
+          <div>
+              <input formControlName="email" type = "email" class = "form-control" placeholder="E-mail" id="reply_to" name="email" required="">
+              <input formControlName="subject" type = "text" class = "form-control" placeholder="Subject" id="subject">
+          </div>
+          <textarea formControlName="message" rows = "5" placeholder="Message" class = "form-control" id="message" name="message" type="text" required=""></textarea>
+          <input type = "submit" class = "send-btn submit" value = "send message" value="Send">
+          </form>
+
+          <div>
+          <img src = "../../assets/contact/contact-png.png" alt = "">
+          </div>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+           <!----------------- End of script sending email--------->
+           <div class = "map">
+              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223700.1490386933!2d-97.11558670486288!3d28.829485511234168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864266db2e2dac3b%3A0xeee20d566f63267d!2sVictoria%2C%20TX%2C%20USA!5e0!3m2!1sen!2snp!4v1604921178092!5m2!1sen!2snp" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14074.42353675196!2d30.731844!3d28.1280381!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145b2552474cdc59%3A0xd9d57bc4a705a4ae!2sITI%20-%20Information%20Technology%20Institute%20(AlMinya)!5e0!3m2!1sen!2seg!4v1700315052177!5m2!1sen!2seg" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+            </div>
+
+            <!-- start------------------ footer -->
+            <!-- <div class = "contact-footer">
+              <h3>Follow Us</h3>
+              <div class = "social-links">
+                <a href = "https://www.facebook.com/" class = "fab fa-facebook-f"></a>
+                <a href = "https://www.x.com/" class = "fab fa-twitter"></a>
+                <a href = "https://www.instagram.com/" class = "fab fa-instagram"></a>
+                <a href = "https://www.linkedin.com/" class = "fab fa-linkedin"></a>
+                <a href = "https://www.youtube.com/" class = "fab fa-youtube"></a>
+              </div>
+            </div> -->
+            <!-- End-------------- footer -->
+</section>
+
+<!--start whatsapp icone -->
+<!-- <div class="fab">
+  <a href="https://api.whatsapp.com/send?phone=+201009252112&text=مرحبا+انا+اريد+معرفة+بعض+التفاصيل+الخاصة+بمنتجاتكم+في+موقع+https%3A%2F%2Fwww.neuton.com%2F&sca_esv=583622784&hl=en&source=hp&ei=QMRYZefGJ-KlkdUPwe-YyAQ&iflsig=AO6bgOgAAAAAZVjSUKKLeHVq9yt6kEVK5WrOUsF9gfWM&ved=0ahUKEwjn5s3E282CAxXiUqQEHcE3BkkQ4dUDCAk&uact=5&oq=مرحبا+انا+اريد+معرفة+بعض+التفاصيل+الخاصة+بمنتجاتكم+في+موقع+https%3A%2F%2Fwww.neuton.com%2F&gs_lp=Egdnd3Mtd2l6IoMB2YXYsdit2KjYpyDYp9mG2Kcg2KfYsdmK2K8g2YXYudix2YHYqSDYqNi52LYg2KfZhNiq2YHYp9i12YrZhCDYp9mE2K7Yp9i12Kkg2KjZhdmG2KrYrNin2KrZg9mFINmB2Yog2YXZiNmC2LkgaHR0cHM6Ly93d3cubmV1dG9uLmNvbS8yChAAGAMYjwEY6gIyChAAGAMYjwEY6gIyChAuGAMYjwEY6gIyChAAGAMYjwEY6gIyChAAGAMYjwEY6gIyChAAGAMYjwEY6gIyChAAGAMYjwEY6gJIvAlQoAVYoAVwAXgAkAEAmAEAoAEAqgEAuAEDyAEA-AEC-AEBqAIH&sclient=gws-wiz"
+    target="_blank" class="fab__button">
+    <i class="lp-icon">
+      <img src="../../assets/contact/neuton-whatsapp.png" alt="Your Image"
+        style="width: 100%; height: 100%; object-fit: contain;">
+    </i>
+  </a>
+  <div class="pulse-rings">
+    <div class="pulse pulse-1"></div>
+    <div class="pulse pulse-2"></div>
+    <div class="pulse pulse-3"></div>
+  </div>
+</div> -->
+<!--end whatsapp icone-->

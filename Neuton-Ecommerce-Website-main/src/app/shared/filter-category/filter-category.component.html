@@ -1,0 +1,108 @@
+<!-- <div class="card flex justify-content-center">
+    <p-tree class="w-full md:w-30rem bg-green-500" [value]="nodes" (click)="print($event)"></p-tree>
+</div> -->
+
+
+<!-- Filter By Categories -->
+<div class="filter-cat">
+    <div class="select-cat">
+        <div class="caret-cat"></div>
+        <span>Categories</span>
+    </div>
+    <ul class="menu">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <li (click)="filterCat(-1,'')">All</li>
+        <li *ngFor="let cat of allCats" (click)="filterCat(cat.id,cat.name)">
+            {{cat.name}}
+        </li>
+    </ul>
+</div>
+
+<!-- Filter By Multi Categories -->
+<div class="filter-cat Mfilter-cat mt-4">
+    <div class="select-cat Mselect-cat">
+        <div class="caret-cat Mcaret-cat"></div>
+        <span>Multi Categories</span>
+    </div>
+    <ul class="menu Mmenu">
+        <!-- <li (click)="filterCat(-1)">All</li> -->
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <div *ngIf="clearFilter" class="clr-fltr">
+            <span>Clear Filter</span>
+            <i (click)="clearMultiFilter()" class="pi pi-times"></i>
+        </div>
+        <li *ngFor="let cat of allCats" (click)="filterMulltiCat(cat.name)">
+            {{cat.name}}
+        </li>
+    </ul>
+</div>
+
+
+
+<!-- Price -->
+<div class="filter-price mb-4">
+    <div class="select-price">
+        <div class="caret-price"></div>
+        <span>Price</span>
+    </div>
+
+    <div class="range justify-content-center">
+        
+        <label class="form-control">{{rangeValues}}</label>
+        <p-slider [min]="0" [max]="10000" [(ngModel)]="rangeValues" 
+        [range]="true" (onSlideEnd)="filterPrice(rangeValues)"
+        [style]="{'background-color':'#b8cbff'}"
+        ></p-slider>
+    </div>  
+</div>
+
+
+
+<!-- <div class="card flex justify-content-center mt-5 x">
+    <p-carousel [value]="crslProducts | slice:0:5" [numVisible]="1" 
+    [numScroll]="1" orientation="vertical" 
+    verticalViewPortHeight="400px" class="py-3"
+    [responsiveOptions]="responsiveOptions" [showIndicators]="false">
+        <ng-template let-product pTemplate="item" style="height: 400px;">            
+            <div class="item">
+                <div class="image">
+                    <img [src]="product.images[0]" alt="">
+                    <div class="btns">
+                        <div class="add-cart">
+                            <i class="icon pi pi-shopping-cart"></i>
+                        </div>
+                        <div class="quick-view">
+                            <i class="icon pi pi-search"></i>
+                        </div>
+                        <div class="details">
+                            <i class="icon pi pi-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="data">
+                    <div class="rate">                       
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                        <i class="star pi pi-star-fill"></i>
+                    </div>
+                    <h3 class="text-muted">{{product.name}}</h3>
+                    <h4> EGP {{product.price}} 
+                        <del>
+                            <span class="text-muted">
+                                EGP {{(product.price)*110/100}}
+                            </span>
+                        </del>
+                    </h4>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div> -->
+
+
+
+
+
+

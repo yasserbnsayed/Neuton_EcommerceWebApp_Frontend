@@ -1,0 +1,359 @@
+<div class="container ">
+    <h2 class="sec-title">featured mobiles</h2>
+</div>
+
+<section class="featured-mobiles">
+    <div class="container-fluid ">
+        <div class="row">
+
+            <div class="col-lg-9 ">
+                <div class="container content">                    
+                    <!-- <app-spinner *ngIf="isLoading"></app-spinner> -->
+                    <app-spinner *ngIf="products.length <= 0"></app-spinner>
+                    <div class="row">
+                        <div class="col-lg-10 item" *ngFor="let item of products | slice:0:5">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="fm-image">
+                                        <img [routerLink]="['/productdetails', item.id]" [src]="item.images[0]">
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 ">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 [routerLink]="['/productdetails', item.id]" class="fm-name">{{item.name}}</h3>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <!-- <p class="fm-des text-muted">{{item.arabicDescription}}</p> -->
+                                            <p class="fm-des text-muted">{{item.description}}</p>
+                                        </div>
+                                        <div class="price col-lg-12">
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                        <!-- <div class="col-lg-12 ">
+                                            <span>Storage/RAM : </span> 512/1000 GB with 16 GB RAM 
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Battery : </span> 4805 mAh
+                                        </div> -->
+                                        <div class="col-lg-12">
+                                            <a class="btn-details" [routerLink]="['/productdetails', item.id]">
+                                                More Details 
+                                                <span> ...</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- <div class="col-lg-10 item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="fm-image">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp">
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 ">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 class="fm-name">Oppo Find N3</h3>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p class="fm-des text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas dolorum ullam nisi qui quasi fugit iste explicabo totam omnis ut corporis ipsam sunt reiciendis ea eos vel odio distinctio, debitis nihil numquam ipsa.</p>
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Storage/RAM : </span> 512/1000 GB with 16 GB RAM 
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Battery : </span> 4805 mAh
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a class="btn-details" href="">More Details <span> ...</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-10 item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="fm-image">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp">
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 ">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 class="fm-name">Oppo Find N3</h3>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p class="fm-des text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas dolorum ullam nisi qui quasi fugit iste explicabo totam omnis ut corporis ipsam sunt reiciendis ea eos vel odio distinctio, debitis nihil numquam ipsa.</p>
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Storage/RAM : </span> 512/1000 GB with 16 GB RAM 
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Battery : </span> 4805 mAh
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a class="btn-details" href="">More Details <span> ...</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-10 item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="fm-image">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp">
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 ">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 class="fm-name">Oppo Find N3</h3>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p class="fm-des text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas dolorum ullam nisi qui quasi fugit iste explicabo totam omnis ut corporis ipsam sunt reiciendis ea eos vel odio distinctio, debitis nihil numquam ipsa.</p>
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Storage/RAM : </span> 512/1000 GB with 16 GB RAM 
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Battery : </span> 4805 mAh
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a class="btn-details" href="">More Details <span> ...</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-10 item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="fm-image">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp">
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 ">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 class="fm-name">Oppo Find N3</h3>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p class="fm-des text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas dolorum ullam nisi qui quasi fugit iste explicabo totam omnis ut corporis ipsam sunt reiciendis ea eos vel odio distinctio, debitis nihil numquam ipsa.</p>
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Storage/RAM : </span> 512/1000 GB with 16 GB RAM 
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <span>Battery : </span> 4805 mAh
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a class="btn-details" href="">More Details <span> ...</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+    
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="container">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                                
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                    <h4 class="crsel-item-title">New Mobiles</h4>
+                                    <app-spinner *ngIf="isLoading"></app-spinner>
+                                    <div class="item-content" *ngFor="let item of newProducts | slice:0:3">
+                                        <img [routerLink]="['/productdetails', item.id]" [src]="item.images[0]" class="d-block">
+                                    
+                                        <div class="align-self-center">
+                                            <a> 
+                                                <h6>{{item.name}}</h6>
+                                            </a>
+                                            <!-- <p class="text-muted">512/1000 GB with 16 GB RAM</p> -->
+                                            <!-- <p class="text-muted">{{item.description}}</p> -->
+                                            <h4> EGP {{item.price}} 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP {{(item.price)*110/100}}
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>                            -->
+                                
+                            </div>
+
+                            <div class="carousel-item">
+                                    <h4 class="crsel-item-title">Used Mobiles</h4>
+                                    <app-spinner *ngIf="isLoading"></app-spinner>
+                                    <div class="item-content" *ngFor="let item of usedProducts | slice:0:3">
+                                        <img [routerLink]="['/productdetails', item.id]" [src]="item.images[0]" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a> 
+                                                <h6>{{item.name}}</h6> 
+                                            </a>
+                                            <!-- <p class="text-muted">512/1000 GB with 16 GB RAM</p> -->
+                                            <!-- <p class="text-muted">{{item.arabicDescription}}</p> -->
+                                            <h4> EGP {{item.price}} 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP {{(item.price)*110/100}}
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>                           -->
+                            </div>
+
+                            <!-- <div class="carousel-item">
+                                    <h4 class="crsel-item-title">New Mobiles</h4>
+
+                                    <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-content">
+                                        <img src="../../assets/FeaturedMobiles/Oppo-Find-N3-1.webp" class="d-block " alt="...">
+                                    
+                                        <div class="align-self-center">
+                                            <a > <h6>Oppo Find N3</h6> </a>
+                                            <p class="text-muted">512/1000 GB with 16 GB RAM</p>
+                                            <h4> EGP 4250 
+                                                <del class="">
+                                                    <span class="text-muted">
+                                                        EGP 4750
+                                                    </span>
+                                                </del>
+                                            </h4>
+                                        </div>
+                                    </div>
+                            </div> -->
+
+                        </div>
+
+                        <button class="carousel-control-prev btnSlid" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <i class="icon fa-solid fa-angle-left"></i>
+                        </button>
+                        <button class="carousel-control-next btnSlid" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <i class="icon fa-solid fa-angle-right"></i>
+                        </button>
+                      </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

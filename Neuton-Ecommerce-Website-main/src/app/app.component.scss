@@ -1,0 +1,277 @@
+// *{
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
+
+.x {
+  z-index: 2000;
+  ::ng-deep {
+    * {
+      border-radius: 20px;
+    }
+    .p-dialog-header {
+      display: none !important;
+      border-radius: 20px !important;
+    }
+
+    .p-dialog-content {
+      border-top: 7px solid var(--main-color);
+      padding: 2rem 1.5rem;
+    }
+    .p-dialog-footer {
+    }
+  }
+  p {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon {
+    //   color: #0da9ef;
+      color: var(--main-color);
+      font-size: 2.5rem;
+      margin-right: 15px;
+    }
+    span {
+      color: var(--main-color);
+      margin-left: 5px;
+    }
+  }
+
+  .msg-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button {
+      margin: auto;
+    }
+  }
+
+  .btn-solid {
+    border-radius: 0 !important;
+    padding: 13px 29px;
+    color: #ffffff !important;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--main-color) !important;
+    background-image: linear-gradient(
+      30deg,
+      var(--main-color) 50%,
+      transparent 50%
+    ) !important;
+    background-size: 850px;
+    background-repeat: no-repeat;
+    background-position: 0;
+    transition: background 300ms ease-in-out;
+    margin-right: 10px;
+    text-transform: uppercase;
+    &:hover {
+      background-position: 100%;
+      color: var(--main-color) !important;
+      background-color: #ffffff;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+/* start whatsapp icon */
+.fab1 {
+  position: fixed !important;
+  width: 80px;
+  height: 80px;
+  bottom: 18px;
+  left: 10%;
+  transform: translateX(-50%);
+  z-index: 1000 !important;
+}
+
+.fab__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #32EE88;
+  cursor: pointer;
+  color: #ffffff;
+  border: 0;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  box-shadow: 0px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  transition: background-color 300ms ease;
+}
+
+.fab__button:hover {
+  background-color: #0055cc;
+}
+
+.lp-icon {
+  font-size: 20px;
+}
+
+
+.pulse-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 3;
+  opacity: 0.0;
+  border-color: #002232;
+  border-style: solid;
+}
+
+.pulse-1 {
+  height: 74px;
+  width: 74px;
+  border-width: 3px;
+  animation: pulsate-1 1.5s ease-out 0s infinite;
+}
+
+.pulse-2 {
+  height: 84px;
+  width: 84px;
+  border-width: 2px;
+  animation: pulsate-2 1.5s ease-out 0s infinite;
+}
+
+.pulse-3 {
+  height: 94px;
+  width: 94px;
+  border-width: 1px;
+  animation: pulsate-3 1.5s ease-out 0s infinite;
+}
+
+@media (max-width: 767px) {
+  .pulse-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pulse {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 300;
+    opacity: 0.0;
+    border-color: #002232;
+    border-style: solid;
+  }
+
+  .pulse-1 {
+    height: 54px;
+    width: 54px;
+    border-width: 3px;
+    animation: pulsate-1 1.5s ease-out 0s infinite;
+  }
+
+  .pulse-2 {
+    height: 64px;
+    width: 64px;
+    border-width: 2px;
+    animation: pulsate-2 1.5s ease-out 0s infinite;
+  }
+
+  .pulse-3 {
+    height: 74px;
+    width: 74px;
+    border-width: 1px;
+    animation: pulsate-3 1.5s ease-out 0s infinite;
+  }
+}
+
+@keyframes pulsate-1 {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0.0;
+  }
+}
+
+@keyframes pulsate-2 {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0.0;
+  }
+}
+
+@keyframes pulsate-3 {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0.0;
+  }
+}
+
+
+
+
+
+/*images*/
+.girl-car {
+  border: 2px solid #32EE88;
+  border-radius: 0 30px 30px 60px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.man-car {
+
+  border: 2px solid #32EE88;
+  border-radius: 0 20px 20px 50px;
+  overflow: hidden;
+  display: inline-block;
+
+}
+
+/* end whatsapp icon */
+
+
+
+
+
+

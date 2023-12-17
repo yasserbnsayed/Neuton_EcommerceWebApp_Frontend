@@ -1,0 +1,174 @@
+
+<div class="nav-top">
+    <p-sidebar [modal]="false" [(visible)]="sidebarVisibleScroll"  position="top">
+        <div class="main">
+        
+            <a class="logo" href="">
+                <img src="../../../assets/logo/Asset 2.png" alt="">
+            </a>
+            
+            <ul>
+                <li routerLink="/home" routerLinkActive="activeLG">Home</li>
+                <li routerLink="/shop" routerLinkActive="activeLG">Shop</li>
+                <li routerLink="/contact" routerLinkActive="activeLG">Contact</li>
+                
+                <li routerLink="/auth" routerLinkActive="activeLG"
+                    *ngIf="!isLogin">
+                    Login
+                </li>
+                <li (click)="calLogout()" *ngIf="isLogin"
+                    routerLink="/auth" routerLinkActive="activeLG">
+                    Logout
+                </li>
+
+                <div class="icons">
+                    <li id="cart" class="icon" routerLink="/cart" routerLinkActive="activeLG" >
+                        <i title="Cart" class="fa-solid fa-cart-shopping"></i>
+                        <span class="carLnth">
+                            {{_ProductsService.dataArraySubject.getValue().length}}
+                        </span>
+                    </li>
+                    <li class="icon" routerLink="/order" routerLinkActive="activeLG">
+                        <i title="Orders" class="fa-solid fa-truck"></i>
+                    </li>
+                </div>
+                
+            </ul>
+    
+            <div (click)="sidebarVisible = true" class="slide">
+                <i class="pi pi-align-justify"></i>
+            </div>
+    
+        </div>
+    </p-sidebar>
+</div>
+
+
+<nav id="nav"> 
+    <div class="main">
+        
+        <a class="logo" href="">
+            <img src="../../../assets/logo/Asset 2.png" alt="">
+        </a>
+        
+        <ul>
+            <li routerLink="/home" routerLinkActive="activeLG">Home</li>
+            <li routerLink="/shop" routerLinkActive="activeLG">Shop</li>
+            <li routerLink="/contact" routerLinkActive="activeLG">Contact</li>
+
+            <li routerLink="/auth" routerLinkActive="activeLG"
+                *ngIf="!isLogin">
+                Login
+            </li>
+            <li (click)="calLogout()" *ngIf="isLogin"
+                routerLink="/auth" routerLinkActive="activeLG">
+                Logout
+            </li>
+
+            <div class="icons">
+                <li id="cart" class="icon" routerLink="/cart" routerLinkActive="activeLG" >
+                    <i title="Cart" class="fa-solid fa-cart-shopping"></i>
+                    <span class="carLnth">
+                        {{_ProductsService.dataArraySubject.getValue().length}}
+                    </span>
+                </li>
+                <li class="icon" routerLink="/order" routerLinkActive="activeLG">
+                    <i title="Orders" class="fa-solid fa-truck"></i>
+                </li>
+            </div>
+            
+        </ul>
+
+        <div (click)="sidebarVisible = true" class="slide">
+            <i class="pi pi-align-justify"></i>
+        </div>
+
+    </div>
+</nav>
+
+<p-sidebar [modal]="false" class="psidebar" [(visible)]="sidebarVisible" position="left">
+    <div class="res-nav">
+        <ul>
+            <li routerLink="/home" routerLinkActive="activeSM">Home</li>
+            <li routerLink="/shop" routerLinkActive="activeSM">Shop</li>
+            <li routerLink="/contact" routerLinkActive="activeLG">Contact</li>
+            <li routerLink="/auth" routerLinkActive="activeLG"
+                *ngIf="!isLogin">
+                Login
+            </li>
+            <li (click)="calLogout()" *ngIf="isLogin"
+                routerLink="/auth" routerLinkActive="activeLG">
+                Logout
+            </li>
+
+            <li class="icon" routerLink="/cart" routerLinkActive="activeLG" >
+                <i id="cart"  title="Cart" class="fa-solid fa-cart-shopping"></i>
+                <span class="carLnth">
+                    {{_ProductsService.dataArraySubject.getValue().length}}
+                </span>
+            </li>
+            <li title="Orders" routerLink="/order" routerLinkActive="activeSM">
+                <i class="icon fa-solid fa-truck"></i>
+            </li>        
+        </ul>
+    </div>
+</p-sidebar>
+
+
+<div class="nav-cart">
+    <p-sidebar [(visible)]="sidebarVisibleCart" position="right">
+
+        <div class="all-content">
+            <div class="product" *ngFor="let p of _ProductsService.dataArraySubject | async">
+
+                <div class="image">
+                    <img [src]="p.product.images[0]">
+                </div>
+
+                <div class="info">
+                    <h6 class="title">{{p.product.name}}</h6>
+                    <p> {{p.q}} x {{p.product.price | currency :' EGP ':'symbol'}}</p>
+                </div>
+                
+            </div>
+
+            <!-- Your Cart is Empty -->
+        <div *ngIf="_ProductsService.dataArraySubject.getValue().length <= 0 "
+            class="col-sm-12 empty-cart-cls text-muted text-center">
+            <img src="../../assets/icon-empty-cart.png" 
+                 class="img-fluid mb-4">
+            <h3>
+                <strong>Your Cart is Empty</strong>
+            </h3>
+            <h4>Add something to make me happy</h4>
+        </div>
+
+            <hr>
+
+            <div class="sub-total">
+                <h6>Subtotal : </h6>
+                <p>{{totalPrice | currency :' EGP ':'symbol'}}</p>
+            </div>
+
+            <hr>
+
+            <div class="btns">
+                <!-- *ngIf="_ProductsService.dataArraySubject.getValue().length > 0" -->
+                <button routerLink="/cart" class="btn btn-solid"
+                        *ngIf="_ProductsService.dataArraySubject.getValue().length > 0">
+                    <span class="w-max">View Cart</span>
+                </button>
+                <button routerLink="/shop" class="btn btn-solid shop"
+                *ngIf="_ProductsService.dataArraySubject.getValue().length <= 0">
+                    <span class="w-max">shopping</span>
+                </button>
+                <button routerLink="/order" class="btn btn-solid"
+                [disabled]="_ProductsService.dataArraySubject.getValue().length <= 0">
+                    <span>Checkout</span>
+                </button>
+            </div>
+        </div>        
+    </p-sidebar>
+</div>
+
+

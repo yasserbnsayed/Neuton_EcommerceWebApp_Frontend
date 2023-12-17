@@ -1,0 +1,145 @@
+<div class="container-title">
+    <div class="head">
+      <div>Register</div>
+      <div>
+        <span class="cursor-pointer" routerLink="/home">Home</span>
+        /
+        <span>Login</span>
+      </div>
+    </div>
+</div>
+
+<p-toast></p-toast>
+
+<div class="container-fluid position-relative">
+    
+    <div class="alert alert-danger msg-error" *ngIf="signUpError">
+        <p class="m-0">
+            <i class="pi pi-exclamation-circle text-danger"></i> 
+            This User Name is already taken
+        </p>
+    </div>
+
+    <div class="alert alert-danger msg-error" *ngIf="signInError">
+        <p class="m-0">
+            <i class="pi pi-exclamation-circle text-danger"></i> 
+            Email or password is not valid
+        </p>
+    </div>
+    <div class="container"  id="container">
+        <div class="form-container sign-up">
+            <form [formGroup]="signUpForm" (submit)="signUp(signUpForm)">
+                <h1>Create Account</h1>
+                <span>or use your email for registeration</span>
+                <!-- <span class="p-float-label">
+                    <input type="text" pInputText formControlName="userName">
+                    <label>Username</label>
+                </span> -->
+                <input type="text" class="form-control" formControlName="userName" placeholder="Username">
+                    <div *ngIf="signUpForm.get('userName')?.errors && signUpForm.get('userName')?.touched">
+                        <p *ngIf="signUpForm.get('userName')?.errors?.['required']" class="m-0 text-danger">User Name Is Required</p>
+                        <p *ngIf="signUpForm.get('userName')?.errors?.['minlength']" class="m-0 text-danger">User Name Min Length Is 3</p>
+                        <p *ngIf="signUpForm.get('userName')?.errors?.['maxlength']" class="m-0 text-danger">UserName Max Length Is 50</p>
+                    </div>
+                
+                <input type="email" class="form-control mt-2" formControlName="emailAddress" placeholder="Email">
+                    <div *ngIf="signUpForm.get('emailAddress')?.errors && signUpForm.get('emailAddress')?.touched">
+                        <p *ngIf="signUpForm.get('emailAddress')?.errors?.['required']" class="m-0 text-danger">Email Is Required</p>
+                        <p *ngIf="signUpForm.get('emailAddress')?.errors?.['email']" class="m-0 text-danger">Email Is Not Valid</p>
+                    </div>
+                
+                <input type="password" class="form-control mt-2" formControlName="password" placeholder="Password">
+                    <div *ngIf="signUpForm.get('password')?.errors && signUpForm.get('password')?.touched">
+                        <p *ngIf="signUpForm.get('password')?.errors?.['required']" class="m-0 text-danger">Password Is Required</p>
+                        <p *ngIf="signUpForm.get('password')?.errors?.['pattern']" class="m-0 text-danger">
+                            Passwords must have at least one special character
+                            ,one digit, one uppercase and be 8
+                        </p>
+                    </div>
+                <input type="password" class="form-control mt-2" formControlName="confirmPassword" placeholder="Repeat Password">
+                    <div *ngIf="signUpForm.get('confirmPassword')?.errors && signUpForm.get('confirmPassword')?.touched">
+                        <p *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']" class="m-0 text-danger">Repassword Is Required</p>
+                        <p *ngIf="signUpForm.get('confirmPassword')?.getError('passwordMatch')" class="m-0 text-danger">Repassword Must Matched To Password</p>
+                    </div>
+                <!-- <input type="text" class="form-control mt-2" formControlName="phone" placeholder="Phone">
+                    <div *ngIf="signUpForm.get('phone')?.errors && signUpForm.get('phone')?.touched">
+                        <p *ngIf="signUpForm.get('phone')?.errors?.['required']" class="m-0 text-danger">Phone Is Required</p>
+                        <p *ngIf="signUpForm.get('phone')?.errors?.['pattern']" class="m-0 text-danger">Must Start With (01) And Be Egyption Number </p>      
+                    </div> -->
+                <button  class="mt-3 btn btn-solid" [disabled]="signUpForm.invalid">Sign Up</button>
+            </form>
+        </div>
+        
+        <div class="form-container py-4 sign-in">
+            <form [formGroup]="signInForm" (submit)="signIn(signInForm)">
+                <h1>Sign In</h1>
+                <span class="desc">or use your email password</span>
+
+                <!-- <div class="form-floating mt-3 w-100">
+                    <input formControlName="emailAddress" type="email" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Email address</label>
+                </div> -->
+                <input type="email" class="form-control mt-2" formControlName="emailAddress" placeholder="Email">
+                    <div *ngIf="signInForm.get('emailAddress')?.errors && signInForm.get('emailAddress')?.touched">
+                        <p *ngIf="signInForm.get('emailAddress')?.errors?.['required']" class="m-0 text-danger">Email Is Required</p>
+                        <p *ngIf="signInForm.get('emailAddress')?.errors?.['email']" class="m-0 text-danger">Email Is Not Valid</p>
+                    </div>
+
+                <!-- <div class="form-floating mt-3 w-100">
+                    <input formControlName="phone" type="text" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Phone</label>
+                </div> -->
+                <!-- <input type="text" class="form-control mt-2" formControlName="phone" placeholder="Phone">
+                    <div *ngIf="signInForm.get('phone')?.errors && signInForm.get('phone')?.touched">
+                        <p *ngIf="signInForm.get('phone')?.errors?.['required']" class="m-0 text-danger">Phone Is Required</p>
+                        <p *ngIf="signInForm.get('phone')?.errors?.['pattern']" class="m-0 text-danger">Must Start With (01) And Be Egyption Number </p>      
+                    </div> -->
+                    
+
+                <!-- <div class="form-floating mt-3 w-100">
+                    <input formControlName="password" type="text" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Password</label>
+                </div> -->
+                <input type="password" class="form-control mt-2" formControlName="password" placeholder="Password">
+                    <div *ngIf="signInForm.get('password')?.errors && signInForm.get('password')?.touched">
+                        <p *ngIf="signInForm.get('password')?.errors?.['required']" class="m-0 text-danger">Password Is Required</p>
+                        <p *ngIf="signInForm.get('password')?.errors?.['pattern']" class="m-0 text-danger">
+                            Passwords must have at least one special character
+                            ,one digit, one uppercase and be 8
+                        </p>
+                    </div>
+
+                
+                <!-- <input type="email" class="form-control mb-2" formControlName="emailAddress" placeholder="Email"> -->
+                <!-- <input type="text" class="form-control mb-2" formControlName="phone" placeholder="Phone"> -->
+                <!-- <input type="text" class="form-control mb-2" formControlName="password" placeholder="Password"> -->
+                <!-- <input type="text" formControlName="rememberMe" placeholder="rememberMe"> -->
+                <!-- <a href="#">Forget Your Password?</a> -->
+                <button class="mt-3 btn btn-solid" [disabled]="signInForm.invalid">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="btn btn-solid window-btn" id="login">
+                        Sign In
+                        <i class="fa-solid fa-arrow-right-long ms-2"></i>
+                    </button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="btn btn-solid window-btn" id="register">
+                        <i class="fa-solid fa-arrow-left-long me-2"></i>
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,302 @@
+
+<div class="container-title">
+    <div class="head">
+      <div>Order</div>
+      <div>
+        <span class="cursor-pointer" routerLink="/home">Home</span>
+        /
+        <span>Order</span>
+      </div>
+    </div>
+</div>
+
+<p-toast></p-toast>
+<main class="container ">
+    <h1 class="heading">
+        <!-- <i class="fa-solid fa-cart-shopping icone"></i> -->
+        <i class="fa-solid fa-truck icone"></i>
+        Shopping Orders
+    </h1>
+        
+  <div class="item-flex">
+    
+    <section class="checkout">
+
+      <div class="container-flud w-100">
+        <div class="row w-100">
+            <div class="w-100 col-md-7 col-sm-12 bg-white">
+                
+                <!-- Form Order Address  -->
+                <div class="row w-100">
+                    <div *ngIf="isCheck == false">
+                        <div class="m-2" style="color: #1842b6; font-weight: bold">
+                            1 - {{ "Enter a new order address" }}
+                        </div>
+                        <div class="card">
+                            <div class="p-3 adress-form">
+                                <form [formGroup]="shippingForm" (ngSubmit)="addShippingAddress()">
+                                    
+                                    <!-- <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" 
+                                            placeholder="name@example.com">
+                                        <label for="floatingInput">Full Name</label>
+                                    </div> -->
+                                    
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <input type="text" class="form-control" id="fullname" 
+                                            placeholder="{{ 'Full Name' }}" name="name" 
+                                            formControlName="name" 
+                                            [ngClass]="{'is-invalid': (name?.touched || name?.dirty) && name?.invalid}"/>
+                                        <label for="fullname" class="col-md-4 col-form-label">
+                                            {{"Full Name"}}
+                                        </label>
+                                    </div>
+
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <input type="text" class="form-control" id="phone"
+                                            placeholder="{{ 'Phone Number' }}" name="phone"
+                                            formControlName="phone"
+                                            [ngClass]="{'is-invalid':(phone?.touched || phone?.dirty) && phone?.invalid}"/>
+                                        <label for="phone" class="col-md-4 col-form-label">
+                                            {{"Phone Number"}}
+                                        </label>
+                                    </div>
+                        
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <select id="countryid" (change)="getAllCitiesBycountryId()"
+                                                formControlName="countryid" class="form-control"
+                                                name="countryid">
+                                            <option *ngFor="let country of countryList"
+                                                    [value]="country.id">
+                                                {{ country.name }}
+                                            </option>
+                                        </select>
+                                        <label class="col-md-6 col-form-label" for="countryid">
+                                            {{ "Select your country" }} :
+                                        </label>
+                                    </div>
+
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <select id="cityid" formControlName="cityid"
+                                                class="form-control" name="cityid">
+                                            <option *ngFor="let city of cityList" [value]="city.id">
+                                                {{ city.name }}
+                                            </option>
+                                        </select>
+                                        <label class="col-md-4 col-form-label" for="cityid">
+                                            {{ "Select your city" }} :
+                                        </label>
+                                    </div>
+
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <input type="text" class="form-control" id="street"
+                                            placeholder="{{ 'street name' }}" name="street"
+                                            formControlName="street"
+                                            [ngClass]="{ 'is-invalid': (street?.touched || street?.dirty) && street?.invalid}"/>
+                                        <label for="street" class="col-md-4 col-form-label">
+                                            {{"Street Name"}}
+                                        </label>                            
+                                    </div>
+
+                                    <div class="form-floating col-md-8 col-sm-12 mb-3">
+                                        <input type="text" class="form-control" id="buildName"
+                                            placeholder="{{ 'build Name' }}" name="street"
+                                            formControlName="buildName"
+                                            [ngClass]="{ 'is-invalid': (buildName?.touched || buildName?.dirty) && street?.invalid}"/>
+                                        <label for="buildName" class="col-md-4 col-form-label">
+                                            {{ "Build Name" }}
+                                        </label>
+                            
+                                    </div>
+                        
+                                    <br />
+                                    <button type="submit" class="btn btn-form"
+                                            [disabled]="!shippingForm.valid">
+                                        {{ "Submit" }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Address Information  -->
+                <div class="row w-100">
+                    <div *ngIf="isCheck == true">
+                        <div class="row">
+                            <div style="color: #1842b6;font-weight:bold;" class="col-md-5 col-sm-12 mb-2 bg-white">
+                                <div>1 - {{ "Order Address" }}</div>
+                            </div>
+                            <div class="col-md-5 col-sm-12 mb-2 bg-white">
+                                <div>Name : {{ shipping.name }}</div>
+                                <div>City Name : {{ shipping.cityname }}</div>
+                                <div>Street Name : {{ shipping.street }}</div>
+                                <div>Build Name : {{ shipping.buildname }}</div>
+                            </div>
+                            <!-- <div class="col-md-2 col-sm-12 bg-white" style="text-align: right">
+                            <a
+                                class="link"
+                                style="text-decoration: none; color: rgb(87, 87, 186)"
+                                >{{ "Change" }}</a
+                            >
+                            </div> -->
+                            <hr style="border-top: 3px solid black; margin: 0 auto" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="row w-100">
+                    <div class="m-2" style="color: #1842b6;font-weight:bold;; ">
+                        2 - {{"Payment Method"}}
+                    </div>
+
+                    <div class="pay-btns">
+                        <button (click)="isCredit = false" class="btn btn-solid">Upon Delivery</button>
+                        <button (click)="isCredit = true" class="btn btn-solid">Credit Card</button>
+                    </div>
+
+                    <!-- Paypal Package  -->
+
+                    <!-- <div class=" mt-50 mb-50" style="  width: 500px; padding: 3rem 3.5rem;">
+                        <form>
+                            <div class="row" >
+                                <div class="col-7">
+                                    <div class="row-1">
+                                        <div class="row row-2">
+                                            <span id="card-inner">{{'Paypal'}}</span>
+                                            <img src="https://i.imgur.com/7kQEsHU.png" style="width: 80px">
+                                            <div class="row row-2">
+                                                <div id="myPaypalButtons" class="d-flex justify-content-center mt-3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+
+          
+                </div> 
+            </div>
+        </div>
+      </div>
+
+      
+      <h3 *ngIf="!isCredit" class="mt-3">Pay the amount upon delivery</h3>
+
+      <div class="card mt-2" *ngIf="isCredit">
+          <div class="pay-frm p-3">
+              <h3>Credit Card</h3>
+              <form class="row g-3" [formGroup]="payForm" (submit)="pay(payForm)">
+                <div class="col-md-12 mt-3">
+                  <label for="inputEmail4" class="form-label">Card Name</label>
+                  <input formControlName="cardName" type="text" class="form-control" id="inputEmail4"placeholder="CARD NAME">
+                </div>
+                <div class="col-md-12 mt-3">
+                  <label for="inputPassword4" class="form-label">Card Number</label>
+                  <input formControlName="cardNum" type="text" class="form-control" id="inputPassword4" placeholder="CARD NMBER">
+                </div>            
+                <div class="col-12 mt-3">
+                  <label for="inputAddress2" class="form-label">Date</label>
+                  <input formControlName="date" type="date" class="form-control" id="inputAddress2" placeholder="DATE">
+                </div>
+                <div class="col-md-6 mt-3 me-2">
+                  <label for="inputCity" class="form-label">City</label>
+                  <input formControlName="city" type="text" class="form-control" id="inputCity" placeholder="CITY">
+                </div>
+                
+                <div class="col-md-2 mt-3">
+                  <label for="inputZip" class="form-label">Zip</label>
+                  <input formControlName="zip" type="text" class="form-control" id="inputZip" placeholder="ZIP">
+                </div>            
+                <div class="col-12 mt-3">
+                  <button [disabled]="!payForm.valid" type="submit" class="btn btn-solid">Sign in</button>
+                </div>
+              </form>
+          </div>
+      </div>
+
+    </section>
+
+    <section class="cart">
+        <div class="text-center d-flex justify-content-around align-items-center ">
+            <button class="btn btn-form"
+                    [disabled]="products.length <= 0 || isCheck == false"
+                    (click)="createOrder()">
+                    Apply
+            </button>
+            <button class="btn btn-form"
+            routerLink="/all-orders"
+                    [disabled]="isCheck == false">
+                    Your Orders
+            </button>
+        </div>
+        <div class="cart-item-box">
+            <h2 class="section-heading">
+                Order Summary
+            </h2>
+
+            <!-- <app-spinner *ngIf="products.length <= 0"></app-spinner> -->
+
+            <div  class="product-card" *ngFor="let p of products">
+                <div class="card p-2" *ngIf="products.length > 0">
+                    <div class="img-box">
+                        <img [routerLink]="['/productdetails', p.product.id]" 
+                             [src]="p.product.images[0]" class="product-img cursor-pointer">
+                    </div>
+                    <div class="details">
+                        <h4 [routerLink]="['/productdetails', p.product.id]" 
+                            class="product-name cursor-pointer">
+                            {{p.product.name}}
+                        </h4>
+                        <div class="warpper">
+                            <div class="product-qty m-0 p-0">
+                                <!-- <button id="decrement">
+                                    <i class="fa-solid fa-minus icone"></i>             
+                                    </button> -->
+                                    <span id="quantity m-0 p-0">{{p.q}}</span>                      
+                                    <span id="quantity m-0 p-0">  * </span>                      
+                                    <span id="price">{{p.product.price | currency:' EGP ':'symbol'}} </span>
+                                <!-- <button id="increment">
+                                    <i class="fa-solid fa-plus icone"></i>
+                                </button> -->
+                            </div>
+                            <div class="price m-0 p-0">
+                                <!-- <span id="price">{{p.product.price}} L.E </span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <button id="product-close-btn">
+                        <i class="fa-solid fa-xmark icone"></i>
+                    </button> -->
+
+                </div>
+            </div>
+
+            <div *ngIf="products.length <= 0"
+                 class="text-muted text-center col-sm-12 empty-cart-cls text-center">
+                <img src="../../assets/icon-empty-cart.png" 
+                     class="img-fluid mb-4 mx-auto">
+                <h3>
+                    <strong>No Orders Yet</strong>
+                </h3>
+                <h4>Add something to make me happy</h4>
+                <button routerLink="/shop" class="btn btn-solid mt-3">
+                    continue shopping
+                </button>
+            </div>
+            <div class="amount w-100">
+                <div style="color: #1842b6;font-weight:bold;" class="total">
+                    <span>Total Price :  </span>
+                    <span>
+                        <span id="total"> {{totalPrice | currency:' EGP ':'symbol'}}</span> 
+                        
+                    </span>
+                </div>
+            </div>
+        </div>        
+    </section>
+  </div>
+</main>

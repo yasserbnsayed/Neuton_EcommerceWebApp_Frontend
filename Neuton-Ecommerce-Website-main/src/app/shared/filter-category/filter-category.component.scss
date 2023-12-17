@@ -1,0 +1,219 @@
+.filter-cat {
+  border: solid 1px var(--main-color);
+  padding: 10px;
+  width: 100%;
+  // padding-bottom: 0 !important;
+  .select-cat {
+    cursor: pointer;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 10px;
+    span {
+      margin: 0 10px;
+    }
+    .caret-cat {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #000;
+      transition: 0.3s;
+    }
+    .caret-rotate {
+      transform: rotate(180deg);
+    }
+  }
+
+  .Mmenu {
+    height: 100px !important;
+  }
+  .menu {
+    height: 150px;
+    overflow: scroll;
+    list-style: none;
+    margin-top: 10px;
+    padding: 0 30px;
+    width: 80%;
+    display: block !important;
+    opacity: 1 !important;
+    transition: all 0.2s ease-in-out;
+    li {
+      cursor: pointer;
+      margin: 3px 0 !important;
+      border-radius: 5px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 0 10px !important;
+      transition: 0.2s;
+      &:hover {
+        background-color: var(--main-color);
+        color: var(--light-color);
+      }
+    }
+  }
+  .menu-open {
+    display: none !important;
+    opacity: 0 !important;
+  }
+}
+
+.filter-price {
+  margin-top: 30px;
+  border: solid 1px var(--main-color);
+  width: 100%;
+  padding: 10px;
+  .select-price {
+    cursor: pointer;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 10px;
+    span {
+      margin: 0 10px;
+    }
+    .caret-price {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #000;
+      transition: 0.3s;
+    }
+    .caret-rotate {
+      transform: rotate(180deg);
+    }
+  }
+  .range {
+    display: block !important;
+    opacity: 1 !important;
+    padding: 0px 15px 20px 15px;
+    label {
+      width: 100px !important;
+      margin-bottom: 10px;
+    }
+  }
+  .range-open {
+    display: none !important;
+    opacity: 0 !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 50px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #b8cbff; /* Change to the color you want */
+  border-radius: 50px !important;
+}
+
+.p-slider-handle {
+  background-color: red !important;
+  padding: 20px !important;
+}
+
+.item {
+  // border: solid 1px transparent;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    // border: solid 1px var(--main-color);
+    .image {
+      .btns {
+        bottom: 20px;
+        opacity: 1;
+      }
+    }
+  }
+  .image {
+    img {
+      width: 100%;
+      height: 300px;
+      padding: 0 5px;
+    }
+    position: relative;
+    overflow: hidden;
+    .btns {
+      background-color: white;
+      //   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 150px;
+      margin: auto;
+      border-radius: 25px;
+      padding: 5px 15px;
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: 0.5s ease-in-out;
+      opacity: 0;
+      .add-cart,
+      .quick-view,
+      .details {
+        .icon {
+          cursor: pointer;
+          font-size: 17px;
+          transition: 0.1s;
+          &:hover {
+            color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+  .data {
+    text-align: center;
+    .rate {
+      margin-bottom: 5px 0;
+      .star {
+        color: #edb867;
+        margin: 0 2px;
+      }
+    }
+    h3 {
+      font-size: 16px;
+    }
+    h4 {
+      font-size: 18px;
+      del {
+        font-size: 14px;
+      }
+    }
+  }
+}
+.xx {
+  margin-top: 50px !important;
+}
+
+@media (max-width: 1000px) {
+  .x {
+    display: none !important;
+  }
+}
+
+.clr-fltr {
+  border: solid 1px var(--main-color);
+  padding: 3px 10px;
+  margin-right: 5px;
+  color: var(--main-color);
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .pi {
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      color: red;
+    }
+  }
+}

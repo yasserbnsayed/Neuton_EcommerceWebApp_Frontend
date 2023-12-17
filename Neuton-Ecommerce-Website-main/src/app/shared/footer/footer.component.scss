@@ -1,0 +1,50 @@
+footer {
+//   background: linear-gradient(to right, #950b0b, #440606);
+  background-color: var(--main-color);
+  margin: 70px 0 0 0;
+  padding: 10px 0;
+  .container {
+    // background: linear-gradient(to right, #950b0b, #440606 );
+    padding: 20px 20px;
+    // border: solid 1px gray;
+
+    h3 {
+      color: white;
+      cursor: context-menu;
+    }
+    ul {
+      margin-top: 10px;
+      li {
+        list-style: none;
+        margin-bottom: 10px;
+        cursor: pointer;
+        width: max-content;
+        color: white;
+        transition: 0.3s ease-in-out;
+        letter-spacing: 1px;
+        font-size: 1.2rem;
+        &:hover {
+          color: rgb(215, 207, 207);
+          transform: translateX(10px);
+        }
+      }
+    }
+    .copRigh {
+      p {
+        // background-color: red;
+        text-align: center;
+        font-size: 1.4rem;
+        color: white;
+        span {
+          a {
+            color: #6da7ff;
+            transition: 0.2s ease-in-out;
+            &:hover {
+              color: #0d6efd;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+
+<!-- <div *ngIf="orders.length <= 0" 
+     class="d-flex justify-content-center align-items-center text-center" 
+     style="min-height: 400px;">
+    <div class="col-8">
+        <h4 class="text-dark">
+            You have not made any orders yet.
+            <br> 
+            You can easily order any product from our website.
+            <br>
+        </h4>
+        <button class="col-md-3 btn btn-danger" routerLink="/home">
+            go Home
+        </button>
+    </div>
+</div> -->
+<p-toast></p-toast>
+<div class="container-title">
+    <div class="head">
+    <div>All Orders</div>
+    <div>
+        <span class="cursor-pointer" routerLink="/home">Home</span>
+        /
+        <span>All Orders</span>
+    </div>
+    </div>
+</div>
+
+<!-- <app-spinner *ngIf="orders.length <= 0"></app-spinner> -->
+
+
+<div *ngIf="orders.length <= 0"
+        class=" text-muted text-center col-sm-12 empty-cart-cls text-center">
+    <img src="../../assets/icon-empty-cart.png" 
+            class="img-fluid mb-4 mx-auto">
+    <h3>
+        <strong>No Orders Yet</strong>
+    </h3>
+    <h4>Add something to make me happy</h4>
+    <button routerLink="/shop" class="btn btn-solid mt-3">
+        continue shopping
+    </button>
+</div>
+<div class="container orders">
+
+    
+
+  <div *ngFor="let order of orders">
+    <div class="card p-2 bg-white border rounded my-2">
+
+        <div class="card-header">
+            <span>
+                {{'Arrival Date'}}: {{order.arrivalDate | date:'short'}}
+            </span>
+            <!-- <span class="mx-5">
+                {{'Total'}} :{{order.total | currency: ' EGP ' : 'symbol'}} 
+            </span> -->
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <div *ngFor="let orderitem of order.orderItems">
+                    <div class="col-md-10 my-2">
+                        <div class="d-flex">
+                            <div class="col-md-2 mt-1">
+                                <img class="img-item img-responsive rounded product-image" 
+                                    [src]="orderitem.imgUrl">
+                            </div>
+                            <div class="col-md-4 mt-1 mx-4">
+                                <ng-container>
+                                    <p class="title">
+                                        Name : {{orderitem.productname}}
+                                    </p>
+                                    <p class="title">
+                                         Quantity :  {{orderitem.count}}
+                                    </p>
+                                    <p class="title">
+                                         Price : {{orderitem.productPrice | currency:'EGP ':'symbol'}}
+                                    </p>
+                                    <p class="title">
+                                        Total : {{orderitem.productPrice * orderitem.count | currency:'EGP ':'symbol'}}
+                                   </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div 
+            class="col-md-4 d-flex align-items-center justify-content-around">
+                <button  *ngIf="order.status<3" type="button" 
+                         class="btn btn-solid" 
+                         (click)="trackPackage(order.id)">
+                         {{'Tracking'}}
+                </button>
+                <!-- <br> -->
+                <h3  style="color: #1842b6;font-weight: bold;" 
+                     *ngIf="order.status >= 3" >
+                    Delivered
+                </h3>
+                <button *ngIf="order.status < 2" type="button"
+                        class="btn btn-solid"  
+                        (click)="show(order.id)">
+                        {{'Cancel'}}
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- <div class="popup1" #popup >
+  
+    <h2>Are you sure you want</h2>
+    <h2> to cancel this order</h2>
+    <button  class="btn btn-danger shadow-0 m-2 rounded-pill"
+      (click)="cancelOrder()">Yes</button>
+      <button  class="btn btn-danger shadow-0 m-2 rounded-pill"
+      (click)="close()">NO</button>
+  </div> -->
+</div>
+
+
+
+
+<p-dialog [(visible)]="visible" [modal]="true" 
+          [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p class="dialogP">
+        <i class="icon fa-solid fa-ban"></i>
+        Are you sure you want
+        to cancel this order
+    </p>
+    
+    <div class="pop-btns">
+        <button (click)="cancelOrder()" 
+                class="btn btn-solid mt-2">
+            Yes
+        </button>
+        <button (click)="close()" 
+                class="btn btn-solid mt-2">
+            No
+        </button>
+    </div>
+</p-dialog>
+
+  
