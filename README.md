@@ -2,7 +2,7 @@
 A Website for a Shop to manage and sale phones and its accessory for users.
 
 # Technology Used :
-Angular JS and .net API
+Angular JS and .Net API
 
 ## App
 
